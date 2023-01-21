@@ -1,0 +1,23 @@
+kind: Deployment
+metadata:
+  name: hello-world-gke
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-wporld-gke
+    template:
+      metadata:
+        labels:
+          app: hello-world-gke
+      spec:
+        containers:
+        - name: hello-world-gke
+        # Replace $GCLOUD_PROJECT with your project ID
+        image: gcr.io/hello-world-container-demo/hello-world-gke:latest
+        # This app listens on port 8080 for web traffic by default.
+        ports:
+        - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
